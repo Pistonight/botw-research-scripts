@@ -1,7 +1,9 @@
 import os
 import shutil
 import yaml
+import zlib
 import subprocess
+import struct
 from typing import Any
 
 def which(name):
@@ -111,3 +113,17 @@ def check_errors(errors: list[str]) -> str | None:
     for err in errors:
         print(f"error: {err}")
     return f"{len(errors)} errors found"
+
+def clean_dir(path: str):
+    if os.path.exists(path):
+        shutil.rmtree(path)
+    os.makedirs(path)
+
+def crc32(s: str) -> int:
+    return zlib.crc32(bytes(s, "utf-8"))
+
+def hex08(x: int) -> str:
+    return f"0x{x:08x}"
+
+def f32_bits(x: int) -> float:
+    return struct.unpack('<f', struct.pack('<I', x))[0]

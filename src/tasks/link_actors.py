@@ -55,7 +55,7 @@ class ActorLink:
 
 def load_actor_links(actor_link_dir: str) -> tuple[dict[str, ActorLink], str | None]:
     files = os.listdir(actor_link_dir)
-    progress = spp.printer(len(files), "Linking Actors")
+    progress = spp.printer(len(files), "Link Actors")
 
     actor_links = {}
     errors = []
@@ -203,7 +203,7 @@ def load_gparamlist_files(keys: list[Gpk], gparam_dir: str) -> tuple[dict[str, l
     """
     files = os.listdir(gparam_dir)
     gparamlist = {}
-    progress = spp.printer(len(files), "Loading GParamLists")
+    progress = spp.printer(len(files), "Load GParamLists")
 
     errors = []
 
@@ -296,7 +296,7 @@ def load_actor_localization() -> tuple[dict[str, LocalizationEntry], str | None]
 
 def load_l10n_for_locale(locale: str, locale_nin: str, entries: dict[str, LocalizationEntry]) -> str | None:
     localization_path = u.botw("Message", f"Msg_{locale_nin}.product.sarc", "ActorType")
-    progress = spp.printer(len(entries), f"Loading {locale} localization")
+    progress = spp.printer(len(entries), f"Load {locale} localization")
     count = 0
 
     for file in os.listdir(localization_path):

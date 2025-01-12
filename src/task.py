@@ -57,7 +57,6 @@ class _TaskMgr:
         exec_q = [(i_task, inputs)]
         while exec_q:
             task, inputs = exec_q.pop()
-            has_newer_outputs = False
             if _is_up_to_date(task, inputs, list(task.output.values())):
                 # outputs are up-to-date, skip the task
                 print(f"===> {task.name():<30}: up-to-date")
@@ -67,16 +66,24 @@ class _TaskMgr:
                 if err is not None:
                     return err
             for o in task.output.values():
-                has_newer_outputs = True
-                self.outputs.add(o)
-            if has_newer_outputs:
-                old_q = self.queued
-                self.queued = []
-                for task, needed_inputs in old_q:
-                    if self._can_run(needed_inputs):
-                        exec_q.append((task, needed_inputs))
-                    else:
-                        self.queued.append((task, needed_inputs))
+                self.outputs.add(u.home(o))
+            old_q = self.queued
+            self.queued = []
+            for task, needed_inputs in old_q:
+                if self._can_run(needed_inputs):
+                    exec_q.append((task, needed_inputs))
+                else:
+                    self.queued.append((task, needed_inputs))
+
+    def finish(self) -> str | None:
+        if self.queued:
+            for task, need_inputs in self.queued:
+                print(f"===X {task.name():<30}: waiting for {need_inputs}")
+            print("Available outputs are:")
+            for o in self.outputs:
+                print(f"  {o}")
+            return "Some tasks could not be run"
+        return None
 
     def _can_run(self, needed_inputs):
         for i in needed_inputs:
