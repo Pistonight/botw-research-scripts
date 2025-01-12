@@ -16,5 +16,9 @@ if __name__ == "__main__":
     u.fatal(mgr.add(link_effects.task()))
     from tasks import decode_cook_system
     u.fatal(mgr.add(decode_cook_system.task()))
+    from tasks import hash_actors
+    u.fatal(mgr.add(hash_actors.task()))
+    from tasks import decode_recipes
+    u.fatal(mgr.add(decode_recipes.task()))
 
     u.fatal(mgr.finish())
