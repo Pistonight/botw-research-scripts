@@ -20,5 +20,7 @@ if __name__ == "__main__":
     u.fatal(mgr.add(hash_actors.task()))
     from tasks import decode_recipes
     u.fatal(mgr.add(decode_recipes.task()))
+    from tasks import build_recipe_groups
+    u.fatal(mgr.add(build_recipe_groups.task()))
 
     u.fatal(mgr.finish())

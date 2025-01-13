@@ -394,7 +394,7 @@ def save_output(actors, gparamlists, localization, actor_output_dir) -> str | No
                         if not data.endswith("\n"):
                             f.write("\n")
             else:
-                f.write("gparamlist: null\n")
+                f.write("gparamlist: {}\n")
             if actor.profile:
                 f.write(f"profile: {actor.profile}\n")
             else:

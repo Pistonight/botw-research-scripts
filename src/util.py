@@ -103,6 +103,20 @@ def sfgetopt[T](obj: Any, key: str, typ: type[T]) -> tuple[T | None, str | None]
         return None, None
     return sfget(obj, key, typ)
 
+def sfgetnullable[T](obj: Any, key: str, typ: type[T]) -> tuple[T | None, str | None]:
+    if key not in obj:
+        return None, None
+    if not isinstance(obj, dict):
+        return None, "not a dictionary" # type: ignore
+    if key not in obj:
+        return None, f"missing key: {key}" # type: ignore
+    x = obj[key]
+    if x is None:
+        return None, None
+    if not isinstance(x, typ):
+        return None, f"invalid type: {key}" # type: ignore
+    return x, None
+
 def pool():
     import multiprocessing
     return multiprocessing.Pool()
