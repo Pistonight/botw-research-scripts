@@ -22,5 +22,7 @@ if __name__ == "__main__":
     u.fatal(mgr.add(decode_recipes.task()))
     from tasks import build_recipe_groups
     u.fatal(mgr.add(build_recipe_groups.task()))
+    from tasks import build_recipe_index
+    u.fatal(mgr.add(build_recipe_index.task()))
 
     u.fatal(mgr.finish())
