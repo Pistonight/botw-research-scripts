@@ -146,6 +146,11 @@ def save_special_status(special_status_dir: str) -> str | None:
             text, _, err = msyt.parse_localization(data, False)
             if err: return err
             special_status_localization[special_status_name][locale] = text
+    # Patch the localization for SurfMaster in the Chinese languages
+    # The game file just uses the JP translation since the effect is unused
+    special_status_localization["SurfMaster"]["zh-CN"] = "\u76fe\u6ed1\u884c\u63d0\u5347"
+    special_status_localization["SurfMaster"]["zh-TW"] = "\u76fe\u6ed1\u884c\u63d0\u5347"
+
     progress.done()
     u.clean_dir(special_status_dir)
     for special_status in SPECIAL_STATUS_TABLE:
