@@ -24,5 +24,9 @@ if __name__ == "__main__":
     u.fatal(mgr.add(build_recipe_groups.task()))
     from tasks import build_recipe_index
     u.fatal(mgr.add(build_recipe_index.task()))
+    from tasks import build_icon_remap
+    u.fatal(mgr.add(build_icon_remap.task()))
+    from tasks import build_armor_upgrade
+    u.fatal(mgr.add(build_armor_upgrade.task()))
 
     u.fatal(mgr.finish())
