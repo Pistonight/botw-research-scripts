@@ -18,3 +18,9 @@ tasks:
     desc: Delete the build output
     cmds:
       - rm -rf output
+
+  push:
+    cmds:
+      - git remote set-url origin git@github.com:Pistonight/botw-research-scripts
+      - git push
+    
