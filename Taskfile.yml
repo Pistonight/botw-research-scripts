@@ -19,7 +19,7 @@ tasks:
     cmds:
       - rm -rf output
 
-  push:
+  git-push:
     cmds:
       - git remote set-url origin git@github.com:Pistonight/botw-research-scripts
       - git push
