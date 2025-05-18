@@ -11,7 +11,8 @@ def setup_botw(git: bool) -> str | None:
     _paths = [
         "Actor/ActorLink/",
         "Actor/GeneralParamList/",
-        "Cooking/"
+        "Cooking/",
+        "GameData/Flag",
     ]
     _recur_paths = [
         "Message/",

@@ -88,6 +88,13 @@ def fyaml(path) -> tuple[Any, str | None]:
     except Exception as e:
         return None, str(e)
 
+def sfgetany(obj: Any, key: str) -> tuple[Any, str | None]:
+    if not isinstance(obj, dict):
+        return None, "not a dictionary" # type: ignore
+    if key not in obj:
+        return None, f"missing key: {key}" # type: ignore
+    return obj[key], None
+
 def sfget[T](obj: Any, key: str, typ: type[T]) -> tuple[T, str | None]:
     if not isinstance(obj, dict):
         return None, "not a dictionary" # type: ignore
@@ -136,7 +143,12 @@ def clean_dir(path: str):
 def crc32(s: str) -> int:
     return zlib.crc32(bytes(s, "utf-8"))
 
+def crc32_signed(s: str) -> int:
+    unsigned = crc32(s) & 0xFFFFFFFF
+    return struct.unpack('i', struct.pack('I', unsigned))[0]
+
 def hex08(x: int) -> str:
+    x = x & 0xFFFFFFFF # change to unsigned
     return f"0x{x:08x}"
 
 def f32_bits(x: int) -> float:

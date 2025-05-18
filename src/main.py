@@ -28,5 +28,7 @@ if __name__ == "__main__":
     u.fatal(mgr.add(build_icon_remap.task()))
     from tasks import build_armor_upgrade
     u.fatal(mgr.add(build_armor_upgrade.task()))
+    from tasks import list_gamedata
+    u.fatal(mgr.add(list_gamedata.task()))
 
     u.fatal(mgr.finish())
