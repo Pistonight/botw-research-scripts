@@ -113,7 +113,7 @@ def make_bool_flag(name: str) -> FlagData:
     x.name = name
     x.hash = u.crc32_signed(name)
     # we don't know, so just give all
-    x.prop_flags = f"{u.hex08(PROP_E | PROP_S | PROP_R | PROP_O | PROP_W)} # worse"
+    x.prop_flags = f"{u.hex08(PROP_E | PROP_S | PROP_R | PROP_O | PROP_W)} # eoswr"
     x.min_val = "false"
     x.max_val = "true"
     x.init_value = "false"
@@ -126,7 +126,7 @@ def make_s32_flag(name: str) -> FlagData:
     x.name = name
     x.hash = u.crc32_signed(name)
     # we don't know, so just give all
-    x.prop_flags = f"{u.hex08(PROP_E | PROP_S | PROP_R | PROP_O | PROP_W)} # worse"
+    x.prop_flags = f"{u.hex08(PROP_E | PROP_S | PROP_R | PROP_O | PROP_W)} # eoswr"
     x.min_val = "0"
     x.max_val = "0"
     x.init_value = "0"
@@ -139,7 +139,7 @@ def make_f32_flag(name: str) -> FlagData:
     x.name = name
     x.hash = u.crc32_signed(name)
     # we don't know, so just give all
-    x.prop_flags = f"{u.hex08(PROP_E | PROP_S | PROP_R | PROP_O | PROP_W)} # worse"
+    x.prop_flags = f"{u.hex08(PROP_E | PROP_S | PROP_R | PROP_O | PROP_W)} # eoswr"
     x.min_val = "0.0"
     x.max_val = "0.0"
     x.init_value = "0.0"
@@ -175,11 +175,11 @@ def get_extras(output: str, out: list[FlagData]):
         x = FlagData()
         x.name = "AoC_RandomSpawnTreasure_Contents"
         x.hash = u.crc32_signed(x.name)
-        x.prop_flags = f"{u.hex08(PROP_E | PROP_S | PROP_R | PROP_O | PROP_W)} # worse"
+        x.prop_flags = f"{u.hex08(PROP_E | PROP_S | PROP_R | PROP_O | PROP_W)} # eoswr"
         x.min_val = "\"\""
         x.max_val = "\"\""
-        x.init_value = "\"\""
-        x.length = None
+        x.init_value = "[\"\"]"
+        x.length = 1
         x.reset_type = 0
         out.append(x)
         return
@@ -187,7 +187,7 @@ def get_extras(output: str, out: list[FlagData]):
         x = FlagData()
         x.name = "AocTestEx_Omosako_ReturnToMainField_Rotation"
         x.hash = u.crc32_signed(x.name)
-        x.prop_flags = f"{u.hex08(PROP_E | PROP_S | PROP_R | PROP_O | PROP_W)} # worse"
+        x.prop_flags = f"{u.hex08(PROP_E | PROP_S | PROP_R | PROP_O | PROP_W)} # eoswr"
         x.min_val = "[0.0,0.0,0.0]"
         x.max_val = "[0.0,0.0,0.0]"
         x.init_value = "[0.0,0.0,0.0]"
